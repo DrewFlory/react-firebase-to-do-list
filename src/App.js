@@ -7,8 +7,9 @@ import './App.css';
 class App extends Component {
   constructor(props){
     super(props);
+    this.addNote = this.addNote.bind(this);
 
-  //Going to setup the React state of our component
+    //Going to setup the React state of our component
     this.state = {
       notes: [
         { id: 1, noteContent: "Note 1 here!" },
@@ -16,6 +17,17 @@ class App extends Component {
       ],
     }
   }
+
+  addNote(note){
+    // Push note onto notes array 
+    const previousNotes = this.state.notes;
+    previousNotes.push({ id: previousNotes.legnth + 1, noteContent: note });
+    this.setState({
+      notes: previousNotes
+    });
+  }
+
+
   render() {
     return (
       <div className = "notesWrapper"> 
@@ -32,7 +44,7 @@ class App extends Component {
         }
         </div>
         <div className="notesFooter">
-          <NoteForm />
+          <NoteForm addNote={this.addNote} />
         </div>
       </div>
     );
