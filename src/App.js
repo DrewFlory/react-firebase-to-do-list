@@ -48,10 +48,27 @@ class App extends Component {
         notes: previousNotes
       })
     })
+
+    this.database.on('child_removed', snap => {
+      for(var i = 0; i < previousNotes.length; i++){
+        if(previousNotes[i].id === snap.key){
+          previousNotes.splice(i,1);
+        }
+      }
+
+      this.setState({
+        notes: previousNotes
+      })
+    })
   }
+
 
   addNote(note){
     this.database.push().set({ noteContent: note});
+  }
+
+  removeNote(noteId){
+    this.database.chile(noteId).remove();
   }
 
   removeNote(noteId){
@@ -63,7 +80,7 @@ class App extends Component {
     return (
       <div className="notesWrapper">
         <div className="notesHeader">
-          <div className="heading">React & Firebase To-Do List</div>
+          <div className="heading">React Agenda</div>
         </div>
         <div className="notesBody">
           {

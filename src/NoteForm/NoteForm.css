@@ -5,6 +5,7 @@
 .noteButton{
     border: none;
     margin: 0px;
+    height: 2rem;
     margin-left: 8px;
     border-radius: 6px;
     border-top-right-radius: 4px;
@@ -24,6 +25,7 @@
 }
 
 .noteInput{
+    height: 2rem;
     width: 800px;
     min-width: 800px;
     top: -10rem;
